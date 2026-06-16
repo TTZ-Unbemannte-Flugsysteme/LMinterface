@@ -1,4 +1,4 @@
-# Cocoa Speech - Intelligent Drone Control
+# Cocoa (Compressed Observation and Context Abstraction) - UAV control using Voice User Interface & Spatial Anchoring using Environment Knowledge Graph
 
 A ROS2-based project that enables intelligent control for the Crazyflie nano quadcopter using Large Language Models (LLM).
 
