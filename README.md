@@ -4,6 +4,8 @@ A ROS2-based project that enables intelligent control for the Crazyflie nano qua
 
 ## Overview
 
+![Architecture Overview](Architecture_V.1.jpg)
+
 This project integrates LLM-based planning with the Crazyflie drone platform, allowing users to control the drone using natural language commands. It combines ROS2 (Robot Operating System 2) with Gazebo simulation via CrazySim's Software-in-the-Loop (SITL) backend.
 
 ## Components
