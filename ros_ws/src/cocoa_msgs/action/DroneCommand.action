@@ -1,0 +1,29 @@
+# DroneCommand action - execute individual drone commands with feedback
+# Server: action_server_node
+# Client: llm_planner_node
+
+# Goal - single drone command
+string command_type           # "takeoff", "goto", "land", "hover"
+float64 target_x
+float64 target_y
+float64 target_z
+float64 yaw
+float64 duration              # for hover command
+
+---
+
+# Result - final outcome
+bool success
+string message
+float64 final_x
+float64 final_y
+float64 final_z
+
+---
+
+# Feedback - progress updates during execution
+float64 current_x
+float64 current_y
+float64 current_z
+float64 distance_remaining
+string status                 # "rising", "moving", "descending", "hovering"

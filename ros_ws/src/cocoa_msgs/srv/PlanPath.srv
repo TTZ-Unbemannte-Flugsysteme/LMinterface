@@ -1,0 +1,47 @@
+# ---------------------------------------------------------
+# PlanPath Service for Path Planning
+# ---------------------------------------------------------
+# This service finds a collision-free path from start to goal.
+# The path planner uses A* algorithm to find the best route
+# around obstacles defined in the EKG (knowledge graph).
+#
+# REQUEST: Where we are and where we want to go
+# RESPONSE: A list of waypoints to follow
+# ---------------------------------------------------------
+
+# === REQUEST ===
+
+# Starting position (where the drone is now)
+geometry_msgs/Point start
+
+# Goal position (where we want to go)
+geometry_msgs/Point goal
+
+# Height to plan at (we do 2D planning at this Z level)
+# Default: 0.5 meters (typical flying height)
+float32 flight_height
+
+# Extra safety space around obstacles (meters)
+# Default: 0.3 meters (30cm buffer)
+float32 safety_margin
+
+---
+
+# === RESPONSE ===
+
+# Did we find a path?
+bool success
+
+# Human-readable message (e.g., "Path found" or "No path - goal is blocked")
+string message
+
+# List of waypoints to follow (from start to goal)
+# Each waypoint is a 3D point (x, y, z)
+# The drone should fly through these points in order
+geometry_msgs/Point[] waypoints
+
+# Total distance of the path in meters
+float32 total_distance
+
+# Number of waypoints in the path
+int32 num_waypoints

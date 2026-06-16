@@ -1,0 +1,113 @@
+# Config for ambiguity detection rules
+# Format: each command has patterns to match, required params, and clarification question
+
+commands:
+  # Movement commands - require distance
+  move_forward:
+    patterns: 
+      - "move forward"
+      - "go forward"
+      - "go ahead"
+      - "forward"
+      - "move ahead"
+    required_params: ["distance"]
+    clarification: "How far should I move forward? (Say a distance like '2 meters')"
+    
+  move_backward:
+    patterns:
+      - "move back"
+      - "move backward"
+      - "go back"
+      - "reverse"
+      - "backward"
+    required_params: ["distance"]
+    clarification: "How far should I move backward?"
+
+  move_left:
+    patterns:
+      - "move left"
+      - "go left"
+      - "strafe left"
+      - "left"
+    required_params: ["distance"]
+    clarification: "How far should I move left?"
+
+  move_right:
+    patterns:
+      - "move right"
+      - "go right"
+      - "strafe right"
+      - "right"
+    required_params: ["distance"]
+    clarification: "How far should I move right?"
+
+  move_up:
+    patterns:
+      - "move up"
+      - "go up"
+      - "ascend"
+      - "climb"
+      - "rise"
+    required_params: ["distance"]
+    clarification: "How high should I go up?"
+
+  move_down:
+    patterns:
+      - "move down"
+      - "go down"
+      - "descend"
+      - "lower"
+    required_params: ["distance"]
+    clarification: "How far should I go down?"
+
+  # Commands that don't require clarification
+  takeoff:
+    patterns:
+      - "take off"
+      - "takeoff"
+      - "lift off"
+      - "launch"
+      - "start"
+    required_params: []
+    clarification: null
+
+  land:
+    patterns:
+      - "land"
+      - "touch down"
+      - "come down"
+      - "set down"
+    required_params: []
+    clarification: null
+
+  hover:
+    patterns:
+      - "hover"
+      - "stay"
+      - "hold position"
+      - "wait"
+      - "stop there"
+    required_params: []
+    clarification: null
+
+  stop:
+    patterns:
+      - "stop"
+      - "halt"
+      - "emergency stop"
+      - "freeze"
+      - "abort"
+    required_params: []
+    clarification: null
+
+# Distance patterns for extraction
+distance_patterns:
+  - pattern: "([0-9]+(?:\\.[0-9]+)?)\\s*(?:meters?|m)"
+    unit: "meters"
+  - pattern: "([0-9]+(?:\\.[0-9]+)?)\\s*(?:centimeters?|cm)"
+    unit: "centimeters"
+  - pattern: "([0-9]+(?:\\.[0-9]+)?)"
+    unit: "meters"  # default unit
+
+# Clarification timeout in seconds
+clarification_timeout: 15.0

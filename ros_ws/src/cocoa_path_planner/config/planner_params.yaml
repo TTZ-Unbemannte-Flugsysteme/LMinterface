@@ -1,0 +1,18 @@
+# Path Planner Configuration
+# Matches the SPACIOUS warehouse environment (cocoa_demo_warehouse.sdf)
+
+path_planner_node:
+  ros__parameters:
+    # Grid resolution (size of each cell in meters)
+    resolution: 0.1  # 10cm per cell = good for small drones
+    
+    # World boundaries (in meters)
+    # These define the area covered by our occupancy grid
+    # Larger area for spacious warehouse
+    x_min: -15.0
+    x_max: 15.0
+    y_min: -15.0
+    y_max: 15.0
+    
+    # Safety margin around obstacles
+    default_safety_margin: 0.8  # 80cm for reliable clearance

@@ -1,0 +1,13 @@
+diff --git a/simulator_files/gazebo/launch/sitl_singleagent.sh b/simulator_files/gazebo/launch/sitl_singleagent.sh
+index b451819..2cb8f5a 100644
+--- a/simulator_files/gazebo/launch/sitl_singleagent.sh
++++ b/simulator_files/gazebo/launch/sitl_singleagent.sh
+@@ -65,7 +65,7 @@ do
+ 	esac
+ done
+ 
+-world=${WORLD:=crazysim_default}
++world=${WORLD:=cocoa_demo_warehouse}
+ x_cord=${X_CORD:=0}
+ y_cord=${Y_CORD:=0}
+ vehicle_model=${VEHICLE_MODEL:="crazyflie"}

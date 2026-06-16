@@ -1,0 +1,27 @@
+# Intent Extractor Configuration
+
+intent_extractor_node:
+  ros__parameters:
+    # LLM Model Settings
+    model_path: "/home/ttz/LLMAgent-----Cocoa_Speech/src/voice_asr/voice_asr/qwen2.5-7b-instruct-q5_k_m-00001-of-00002.gguf"
+    n_gpu_layers: 0          # 0 for CPU, -1 for all GPU layers
+    n_ctx: 4096              # Context window
+    temperature: 0.7         # Deterministic output
+    max_tokens: 256
+    
+    # Topics
+    input_topic: "/voice/text"
+    output_topic: "/intent"
+    
+    # Valid intent types
+    intent_types:
+      - "MOVE_DIRECTION"
+      - "GO_TO_LOCATION"
+      - "CHANGE_ALTITUDE"
+      - "ROTATE"
+      - "TAKEOFF"
+      - "LAND"
+      - "HOVER"
+      - "EMERGENCY_STOP"
+      - "QUERY"
+      - "UNKNOWN"

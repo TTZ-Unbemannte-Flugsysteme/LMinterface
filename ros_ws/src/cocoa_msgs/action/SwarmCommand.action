@@ -1,0 +1,18 @@
+# Goal: Send multiple drones to the same (x,y) target with altitude separation
+string[] drone_ids
+float64 target_x
+float64 target_y
+float64[] target_z_per_drone   # one altitude per drone (collision separation)
+string command_type             # "goto_swarm" | "takeoff_swarm" | "land_swarm"
+---
+# Result
+bool success
+string[] drone_results          # per-drone status message
+---
+# Feedback
+string[] drone_ids
+float64[] current_x
+float64[] current_y
+float64[] current_z
+float64[] distance_remaining
+string[] status                 # per-drone: "flying" | "arrived" | "failed"

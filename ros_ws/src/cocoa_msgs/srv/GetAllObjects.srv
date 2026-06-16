@@ -1,0 +1,14 @@
+# GetAllObjects.srv - Get all object positions from EKG for collision checking
+# Server: ekg_node
+# Client: lga_node (fetches objects for collision checking)
+
+# Request (empty - get all objects)
+---
+
+# Response
+string[] names                      # Object names
+geometry_msgs/Point[] positions     # Corresponding positions
+geometry_msgs/Vector3[] sizes       # Object dimensions (width, depth, height)
+string[] categories                 # Corresponding categories
+int32 count                         # Number of objects
+

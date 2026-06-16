@@ -1,0 +1,14 @@
+thessis findings
+Your thesis contribution is LGA (context filtering) - that's novel and defensible
+Fine-tuning fixes symptoms, not the architecture
+You can always mention it as "future work" in your thesis
+Your current struggles are good findings - "7B models require explicit structured context"
+Better use of your time:
+
+Fix the remaining prompt issues
+Run your experiments
+Write up findings
+Graduate 🎓
+
+
+"The study demonstrates that small edge LLMs (7B parameters) require explicit semantic context structuring to perform reliable contextual reasoning. Without structured hints like CURRENT_LOCATION and PREVIOUS_LOCATION, the model defaults to pattern-matching from examples rather than true logical inference."

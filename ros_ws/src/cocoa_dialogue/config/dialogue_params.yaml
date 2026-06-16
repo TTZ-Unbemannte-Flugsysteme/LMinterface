@@ -1,0 +1,26 @@
+# Dialogue Manager Parameters
+
+dialogue_manager_node:
+  ros__parameters:
+    # Push-to-talk key
+    ptt_key: "space"
+    
+    # Microphone settings
+    input_device_index: -1  # -1 for default device
+    sample_rate: 16000
+    chunk_size: 16000  # ~1 second
+    
+    # Whisper settings
+    whisper_model: "base.en"
+    whisper_device: "cuda"
+    whisper_compute_type: "float16"
+    # To use OpenAI Whisper Cloud API (optional, default is local offline Whisper)
+    # whisper_api_key: "your-whisper-api-key-here"
+    
+    # Clarification settings
+    clarification_timeout: 15.0  # seconds to wait for response
+    
+    # Topics
+    tts_topic: "/tts/speak"
+    user_command_topic: "/dialogue/user_command"
+    status_topic: "/dialogue/status"

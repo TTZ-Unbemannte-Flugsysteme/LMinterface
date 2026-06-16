@@ -1,0 +1,30 @@
+# QueryLGA service - Language-Guided Abstraction for context filtering
+# Server: lga_node
+# Client: intent_extractor, llm_planner
+
+# Request
+string intent_type        # MOVE_DIRECTION, GO_TO_LOCATION, TAKEOFF, LAND, etc.
+string target_name        # Target object name for GO_TO_LOCATION (e.g., "table")
+string direction          # forward, backward, left, right, up, down
+float64 distance          # Requested movement distance in meters
+geometry_msgs/Point current_position  # Current drone position (optional, LGA tracks this)
+bool baseline_mode        # THESIS: If true, return ALL context (no filtering)
+
+---
+
+# Response
+bool safe                 # Is the intended action safe?
+bool target_found         # True if target object was found in EKG
+geometry_msgs/Point target_position  # Target coordinates from EKG
+geometry_msgs/Point drone_position   # Current drone position from pose
+float64 clearance         # Distance to nearest obstacle in path (meters)
+string[] obstacles        # List of obstacle names in path
+float64 battery_level     # Current battery percentage (0-100)
+string drone_state        # grounded, hovering, flying
+bool is_flying            # True if drone is airborne
+string warning            # Safety warning message if any
+
+# NEW: Thesis contribution - filtered context for LLM
+string filtered_context   # Pre-built context string for Planner LLM (thesis: LGA filtering)
+int32 context_token_count # Approximate token count for metrics (chars / 4)
+

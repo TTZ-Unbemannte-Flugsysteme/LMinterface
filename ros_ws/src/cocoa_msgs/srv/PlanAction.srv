@@ -1,0 +1,14 @@
+# PlanAction service - request action planning from LLM
+# Server: llm_node
+# Client: lga_node (after gathering context)
+
+# Request
+cocoa_msgs/Intent intent      # The user's intent
+cocoa_msgs/Context context    # Filtered context from LGA
+
+---
+
+# Response  
+cocoa_msgs/ActionPlan plan    # The generated action plan
+bool success                  # True if planning succeeded
+string error_message          # Error description if success=false

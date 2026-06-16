@@ -1,0 +1,14 @@
+# QueryEKG service - query object position from the Embodied Knowledge Graph
+# Server: ekg_node
+# Client: intent_extractor or lga_node
+
+# Request
+string object_name            # Name of the object to find (e.g., "table", "door")
+
+---
+
+# Response
+bool found                    # True if object exists in the graph
+geometry_msgs/Point position  # Object position (x, y, z)
+string category               # Object category (e.g., "furniture", "appliance")
+string error_message          # Error description if not found

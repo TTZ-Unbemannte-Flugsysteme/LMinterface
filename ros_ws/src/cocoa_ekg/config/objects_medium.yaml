@@ -1,0 +1,282 @@
+# ============================================
+# Warehouse Environment - Object Configuration
+# ============================================
+# ACCURATE sizes matching actual Gazebo collision boxes
+# Safety margin (0.8m) is applied by path planner separately
+
+objects:
+  # ============= SHELVES (Navigation Targets) =============
+  # Shelf mesh is ~2.5m wide x 0.8m deep
+  
+  - name: shelf_a
+    position: [-10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf A - far left"
+    
+  - name: shelf_b
+    position: [10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf B - far right"
+
+  # ============= PALLETS (Work Areas) =============
+  # Pallet model collision: 1.22m x 0.8m (from model.sdf)
+  
+  - name: pallet_1
+    position: [-6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - west side"
+    
+  - name: pallet_2
+    position: [6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - east side"
+
+  # ============= OBSTACLES =============
+  
+  # CENTER RACK - size from SDF: 0.5 x 2.0m
+  - name: center_rack
+    position: [0.0, 5.0, 0.5]
+    category: obstacle
+    size: [0.5, 2.0, 1.0]
+    description: "Central storage rack"
+    
+  # FORKLIFT - mecanum_lift model ~1.5m x 1.0m
+  - name: forklift
+    position: [6.0, -6.0, 0.6]
+    category: obstacle
+    size: [1.5, 1.0, 1.2]
+    description: "Parked forklift - obstacle"
+    
+  # BOX 1 - cardboard box ~0.5m
+  - name: box_1
+    position: [-6.0, -6.0, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Cardboard box - small obstacle"
+
+  # ============= LANDMARKS =============
+  
+  - name: landing_pad
+    position: [0.0, -10.0, 0.01]
+    category: landmark
+    size: [1.6, 1.6, 0.02]
+    description: "Main drone landing pad"
+
+# With 0.8m safety margin added by path planner:
+# - Pallet blocked zone: 1.3+1.6=2.9m x 1.0+1.6=2.6m = ~7.5 m²
+# - Much smaller than before (was blocking 12+ m²)
+
+
+  # ============= SYNTHETIC DENSE OBSTACLES =============
+  # Placed far OUTSIDE the flight volume to avoid blocking A* path planning
+
+  - name: misc_box_2
+    position: [32.8, 20.5, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 2"
+
+  - name: misc_box_3
+    position: [33.5, 37.8, 0.2]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 3"
+
+  - name: misc_box_4
+    position: [24.4, 30.1, 0.1]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 4"
+
+  - name: misc_box_5
+    position: [30.9, 24.4, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 5"
+
+  - name: misc_box_6
+    position: [36.1, 34.0, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 6"
+
+  - name: misc_box_7
+    position: [26.7, 21.9, 0.2]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 7"
+
+  - name: misc_box_8
+    position: [36.1, 34.6, 0.5]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 8"
+
+  - name: misc_box_9
+    position: [31.0, 36.6, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 9"
+
+  - name: misc_box_10
+    position: [34.1, 20.9, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 10"
+
+  - name: misc_box_11
+    position: [24.7, 22.0, 0.3]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 11"
+
+  - name: misc_box_12
+    position: [27.4, 24.2, 0.3]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 12"
+
+  - name: misc_box_13
+    position: [32.2, 23.4, 0.6]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 13"
+
+  - name: misc_box_14
+    position: [39.8, 32.8, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 14"
+
+  - name: misc_box_15
+    position: [35.5, 24.6, 0.1]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 15"
+
+  - name: misc_box_16
+    position: [24.2, 38.9, 0.7]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 16"
+
+  - name: misc_box_17
+    position: [27.9, 38.3, 0.4]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 17"
+
+  - name: misc_box_18
+    position: [31.2, 25.3, 0.5]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 18"
+
+  - name: misc_box_19
+    position: [24.4, 40.0, 0.5]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 19"
+
+  - name: misc_box_20
+    position: [22.2, 32.5, 0.7]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 20"
+
+  - name: misc_box_21
+    position: [27.6, 39.9, 0.5]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 21"
+
+  - name: misc_box_22
+    position: [20.2, 34.4, 0.6]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 22"
+
+  - name: misc_box_23
+    position: [32.8, 22.2, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 23"
+
+  - name: misc_box_24
+    position: [37.5, 25.3, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 24"
+
+  - name: misc_box_25
+    position: [37.4, 26.0, 0.5]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 25"
+
+  - name: misc_box_26
+    position: [35.3, 30.8, 0.6]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 26"
+
+# ============================================
+# Semantic Relationships for LLM Reasoning
+# ============================================
+# These relationships are exposed to the Intent Extractor LLM
+# to enable disambiguation (e.g., "pallet near shelf A" → pallet_1)
+
+relationships:
+  # Spatial proximity relationships
+  - from: pallet_1
+    to: shelf_a
+    relation: near
+    
+  - from: pallet_2
+    to: shelf_b
+    relation: near
+    
+  # Zone relationships
+  - from: landing_pad
+    to: warehouse_floor
+    relation: in_zone
+    
+  # Obstacle proximity (helps LLM understand environment layout)
+  - from: forklift
+    to: pallet_2
+    relation: near
+    
+  - from: box_1
+    to: pallet_1
+    relation: near
+  - from: misc_box_3
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_5
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_10
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_19
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_20
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_25
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_26
+    to: warehouse_wall
+    relation: near

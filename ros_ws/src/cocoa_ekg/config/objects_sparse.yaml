@@ -1,0 +1,101 @@
+# ============================================
+# Warehouse Environment - Object Configuration
+# ============================================
+# ACCURATE sizes matching actual Gazebo collision boxes
+# Safety margin (0.8m) is applied by path planner separately
+
+objects:
+  # ============= SHELVES (Navigation Targets) =============
+  # Shelf mesh is ~2.5m wide x 0.8m deep
+  
+  - name: shelf_a
+    position: [-10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf A - far left"
+    
+  - name: shelf_b
+    position: [10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf B - far right"
+
+  # ============= PALLETS (Work Areas) =============
+  # Pallet model collision: 1.22m x 0.8m (from model.sdf)
+  
+  - name: pallet_1
+    position: [-6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - west side"
+    
+  - name: pallet_2
+    position: [6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - east side"
+
+  # ============= OBSTACLES =============
+  
+  # CENTER RACK - size from SDF: 0.5 x 2.0m
+  - name: center_rack
+    position: [0.0, 5.0, 0.5]
+    category: obstacle
+    size: [0.5, 2.0, 1.0]
+    description: "Central storage rack"
+    
+  # FORKLIFT - mecanum_lift model ~1.5m x 1.0m
+  - name: forklift
+    position: [6.0, -6.0, 0.6]
+    category: obstacle
+    size: [1.5, 1.0, 1.2]
+    description: "Parked forklift - obstacle"
+    
+  # BOX 1 - cardboard box ~0.5m
+  - name: box_1
+    position: [-6.0, -6.0, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Cardboard box - small obstacle"
+
+  # ============= LANDMARKS =============
+  
+  - name: landing_pad
+    position: [0.0, -10.0, 0.01]
+    category: landmark
+    size: [1.6, 1.6, 0.02]
+    description: "Main drone landing pad"
+
+# With 0.8m safety margin added by path planner:
+# - Pallet blocked zone: 1.3+1.6=2.9m x 1.0+1.6=2.6m = ~7.5 m²
+# - Much smaller than before (was blocking 12+ m²)
+
+# ============================================
+# Semantic Relationships for LLM Reasoning
+# ============================================
+# These relationships are exposed to the Intent Extractor LLM
+# to enable disambiguation (e.g., "pallet near shelf A" → pallet_1)
+
+relationships:
+  # Spatial proximity relationships
+  - from: pallet_1
+    to: shelf_a
+    relation: near
+    
+  - from: pallet_2
+    to: shelf_b
+    relation: near
+    
+  # Zone relationships
+  - from: landing_pad
+    to: warehouse_floor
+    relation: in_zone
+    
+  # Obstacle proximity (helps LLM understand environment layout)
+  - from: forklift
+    to: pallet_2
+    relation: near
+    
+  - from: box_1
+    to: pallet_1
+    relation: near

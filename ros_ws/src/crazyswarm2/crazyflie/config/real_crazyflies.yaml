@@ -1,0 +1,43 @@
+# Configuration for Real Crazyflies
+fileversion: 3
+
+robots:
+  cf231:
+    enabled: true
+    # Default radio URI, USER PLEASE VERIFY THIS MATCHES YOUR DRONE
+    uri: radio://0/80/2M/E7E7E7E7E7
+    initial_position: [0.0, 0.0, 0.0]
+    type: cf21
+
+robot_types:
+  cf21:
+    motion_capture:
+      tracking: "vendor"  # Using OptiTrack rigid body streaming
+      marker: default_single_marker
+      dynamics: default
+    big_quad: true
+    battery:
+      voltage_warning: 3.8
+      voltage_critical: 3.7
+
+all:
+  firmware_logging:
+    enabled: true
+    default_topics:
+      pose:
+        frequency: 5  # Reduced from 10Hz to save radio bandwidth
+      status:
+        frequency: 0.5  # Reduced from 1Hz to save radio bandwidth
+  firmware_params:
+    commander:
+      enHighLevel: 1
+    stabilizer:
+      estimator: 2 # 1: complementary, 2: kalman
+      controller: 2 # 1: PID, 2: mellinger
+    locSrv:
+      extQuatStdDev: 0.05  # Trust external quaternion from OptiTrack
+    kalman:
+      resetEstimation: 1  # Reset and start fresh with external pose
+
+
+

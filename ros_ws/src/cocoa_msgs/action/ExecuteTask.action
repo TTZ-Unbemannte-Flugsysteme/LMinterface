@@ -1,0 +1,24 @@
+# ExecuteTask action - execute a task plan with progress feedback
+# Server: bt_manager_node
+# Client: main coordinator or llm_node
+
+# Goal - what we want to accomplish
+string task_id                # Unique task identifier
+string task_description       # Human-readable description
+cocoa_msgs/ActionPlan plan    # The action plan to execute
+
+---
+
+# Result - final outcome
+bool success                  # True if task completed successfully
+string completion_message     # Human-readable completion message
+float64 execution_time_seconds # How long the task took
+string[] actions_completed    # Which actions were successfully executed
+
+---
+
+# Feedback - progress updates during execution
+float64 progress_percent      # 0.0 to 100.0
+string current_action         # Action currently being executed
+string current_status         # Human-readable status, e.g. "Moving... 2.1m remaining"
+geometry_msgs/Point current_position # Current drone position

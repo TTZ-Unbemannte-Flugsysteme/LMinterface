@@ -1,0 +1,11 @@
+# GetKnowledgeSummary.srv - Get EKG summary for LLM prompt injection
+# Server: ekg_node
+# Client: intent_extractor_node (fetches once at startup)
+
+# Request (empty - just get the current knowledge state)
+---
+
+# Response
+string knowledge_text       # Serialized graph for LLM prompt injection (~60 tokens)
+int32 object_count          # Number of objects in graph
+int32 relationship_count    # Number of semantic relationships

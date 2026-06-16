@@ -1,0 +1,35 @@
+# GBNF Grammar for LLM Planner JSON Output
+# Forces valid JSON structure: {"reasoning": "...", "actions": [...]}
+# This grammar constrains llama.cpp to only output syntactically valid plans.
+
+root ::= "{" ws "\"reasoning\":" ws "\"" reasoning-text "\"," ws "\"actions\":" ws "[" action-list "]" ws "}"
+
+# Reasoning can be any text (except unescaped quotes)
+reasoning-text ::= reasoning-char*
+reasoning-char ::= [^\"\\] | "\\" escape-char
+escape-char ::= ["\\nrt]
+
+# Action list: empty, single, or comma-separated
+action-list ::= ws | ws action (ws "," ws action)* ws
+
+# Each action has tool and params
+action ::= "{" ws "\"tool\":" ws "\"" tool-name "\"," ws "\"params\":" ws params ws "}"
+
+# Constrain tool names to valid values only
+tool-name ::= "takeoff" | "land" | "goto" | "navigate_to" | "hover"
+
+# Params is a JSON object with numeric/string values
+params ::= "{" ws param-list ws "}"
+param-list ::= | param (ws "," ws param)*
+param ::= "\"" param-name "\":" ws param-value
+
+# Valid parameter names
+param-name ::= "x" | "y" | "z" | "height" | "yaw" | "duration"
+
+# Parameter values: numbers (int or float, positive or negative)
+param-value ::= number
+number ::= "-"? digit+ ("." digit+)?
+digit ::= [0-9]
+
+# Whitespace handling
+ws ::= [ \t\n]*

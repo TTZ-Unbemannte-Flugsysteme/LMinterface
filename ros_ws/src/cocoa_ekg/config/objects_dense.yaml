@@ -1,0 +1,780 @@
+# ============================================
+# Warehouse Environment - Object Configuration
+# ============================================
+# ACCURATE sizes matching actual Gazebo collision boxes
+# Safety margin (0.8m) is applied by path planner separately
+
+objects:
+  # ============= SHELVES (Navigation Targets) =============
+  # Shelf mesh is ~2.5m wide x 0.8m deep
+  
+  - name: shelf_a
+    position: [-10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf A - far left"
+    
+  - name: shelf_b
+    position: [10.0, 8.0, 1.0]
+    category: furniture
+    size: [2.5, 0.8, 2.0]
+    description: "Storage shelf B - far right"
+
+  # ============= PALLETS (Work Areas) =============
+  # Pallet model collision: 1.22m x 0.8m (from model.sdf)
+  
+  - name: pallet_1
+    position: [-6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - west side"
+    
+  - name: pallet_2
+    position: [6.0, 2.0, 0.6]
+    category: furniture
+    size: [1.3, 1.0, 1.2]
+    description: "Pallet with cargo - east side"
+
+  # ============= OBSTACLES =============
+  
+  # CENTER RACK - size from SDF: 0.5 x 2.0m
+  - name: center_rack
+    position: [0.0, 5.0, 0.5]
+    category: obstacle
+    size: [0.5, 2.0, 1.0]
+    description: "Central storage rack"
+    
+  # FORKLIFT - mecanum_lift model ~1.5m x 1.0m
+  - name: forklift
+    position: [6.0, -6.0, 0.6]
+    category: obstacle
+    size: [1.5, 1.0, 1.2]
+    description: "Parked forklift - obstacle"
+    
+  # BOX 1 - cardboard box ~0.5m
+  - name: box_1
+    position: [-6.0, -6.0, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Cardboard box - small obstacle"
+
+  # ============= LANDMARKS =============
+  
+  - name: landing_pad
+    position: [0.0, -10.0, 0.01]
+    category: landmark
+    size: [1.6, 1.6, 0.02]
+    description: "Main drone landing pad"
+
+# With 0.8m safety margin added by path planner:
+# - Pallet blocked zone: 1.3+1.6=2.9m x 1.0+1.6=2.6m = ~7.5 m²
+# - Much smaller than before (was blocking 12+ m²)
+
+
+  # ============= SYNTHETIC DENSE OBSTACLES =============
+  # Placed far OUTSIDE the flight volume to avoid blocking A* path planning
+
+  - name: misc_box_2
+    position: [26.5, 20.4, 0.8]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 2"
+
+  - name: misc_box_3
+    position: [26.2, 21.2, 0.7]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 3"
+
+  - name: misc_box_4
+    position: [29.7, 21.4, 0.6]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 4"
+
+  - name: misc_box_5
+    position: [29.5, 31.0, 0.3]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 5"
+
+  - name: misc_box_6
+    position: [24.2, 30.8, 0.6]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 6"
+
+  - name: misc_box_7
+    position: [39.9, 33.0, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 7"
+
+  - name: misc_box_8
+    position: [24.5, 26.8, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 8"
+
+  - name: misc_box_9
+    position: [21.4, 32.6, 0.3]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 9"
+
+  - name: misc_box_10
+    position: [21.4, 24.8, 0.6]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 10"
+
+  - name: misc_box_11
+    position: [38.7, 31.4, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 11"
+
+  - name: misc_box_12
+    position: [23.8, 21.9, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 12"
+
+  - name: misc_box_13
+    position: [34.6, 33.5, 0.8]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 13"
+
+  - name: misc_box_14
+    position: [26.8, 37.2, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 14"
+
+  - name: misc_box_15
+    position: [28.4, 25.6, 0.3]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 15"
+
+  - name: misc_box_16
+    position: [37.2, 31.0, 0.1]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 16"
+
+  - name: misc_box_17
+    position: [39.4, 38.5, 0.7]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 17"
+
+  - name: misc_box_18
+    position: [24.3, 28.0, 0.1]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 18"
+
+  - name: misc_box_19
+    position: [25.3, 35.7, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 19"
+
+  - name: misc_box_20
+    position: [39.9, 31.1, 0.6]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 20"
+
+  - name: misc_box_21
+    position: [39.4, 31.6, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 21"
+
+  - name: misc_box_22
+    position: [31.7, 30.1, 0.7]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 22"
+
+  - name: misc_box_23
+    position: [21.6, 23.7, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 23"
+
+  - name: misc_box_24
+    position: [22.4, 37.8, 0.3]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 24"
+
+  - name: misc_box_25
+    position: [28.4, 31.7, 0.5]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 25"
+
+  - name: misc_box_26
+    position: [34.3, 24.8, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 26"
+
+  - name: misc_box_27
+    position: [26.3, 35.0, 0.2]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 27"
+
+  - name: misc_box_28
+    position: [39.9, 21.5, 0.2]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 28"
+
+  - name: misc_box_29
+    position: [37.6, 37.6, 0.4]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 29"
+
+  - name: misc_box_30
+    position: [34.1, 32.2, 0.8]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 30"
+
+  - name: misc_box_31
+    position: [36.3, 26.0, 0.6]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 31"
+
+  - name: misc_box_32
+    position: [22.3, 22.1, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 32"
+
+  - name: misc_box_33
+    position: [34.4, 24.1, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 33"
+
+  - name: misc_box_34
+    position: [38.1, 36.9, 0.2]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 34"
+
+  - name: misc_box_35
+    position: [20.1, 35.4, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 35"
+
+  - name: misc_box_36
+    position: [31.0, 28.6, 0.1]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 36"
+
+  - name: misc_box_37
+    position: [38.1, 30.9, 0.7]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 37"
+
+  - name: misc_box_38
+    position: [22.5, 26.2, 0.7]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 38"
+
+  - name: misc_box_39
+    position: [38.0, 24.2, 0.3]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 39"
+
+  - name: misc_box_40
+    position: [37.7, 28.1, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 40"
+
+  - name: misc_box_41
+    position: [37.3, 39.5, 0.7]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 41"
+
+  - name: misc_box_42
+    position: [34.7, 26.6, 0.8]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 42"
+
+  - name: misc_box_43
+    position: [36.2, 25.3, 0.7]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 43"
+
+  - name: misc_box_44
+    position: [37.2, 24.4, 0.7]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 44"
+
+  - name: misc_box_45
+    position: [35.9, 24.6, 0.1]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 45"
+
+  - name: misc_box_46
+    position: [37.3, 39.3, 0.3]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 46"
+
+  - name: misc_box_47
+    position: [39.6, 30.7, 0.8]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 47"
+
+  - name: misc_box_48
+    position: [23.6, 39.3, 0.3]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 48"
+
+  - name: misc_box_49
+    position: [34.6, 26.3, 0.5]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 49"
+
+  - name: misc_box_50
+    position: [31.5, 25.1, 0.6]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 50"
+
+  - name: misc_box_51
+    position: [30.8, 34.4, 0.6]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 51"
+
+  - name: misc_box_52
+    position: [21.4, 33.3, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 52"
+
+  - name: misc_box_53
+    position: [34.4, 26.0, 0.3]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 53"
+
+  - name: misc_box_54
+    position: [25.9, 22.5, 0.4]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 54"
+
+  - name: misc_box_55
+    position: [38.1, 32.3, 0.3]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 55"
+
+  - name: misc_box_56
+    position: [25.7, 28.6, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 56"
+
+  - name: misc_box_57
+    position: [28.8, 24.3, 0.4]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 57"
+
+  - name: misc_box_58
+    position: [23.4, 21.7, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 58"
+
+  - name: misc_box_59
+    position: [36.4, 35.0, 0.6]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 59"
+
+  - name: misc_box_60
+    position: [20.5, 24.9, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 60"
+
+  - name: misc_box_61
+    position: [28.3, 32.6, 0.2]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 61"
+
+  - name: misc_box_62
+    position: [24.9, 33.1, 0.1]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 62"
+
+  - name: misc_box_63
+    position: [22.1, 28.5, 0.2]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 63"
+
+  - name: misc_box_64
+    position: [21.0, 25.0, 0.7]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 64"
+
+  - name: misc_box_65
+    position: [33.4, 39.8, 0.5]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 65"
+
+  - name: misc_box_66
+    position: [32.3, 34.4, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 66"
+
+  - name: misc_box_67
+    position: [37.9, 34.9, 0.4]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 67"
+
+  - name: misc_box_68
+    position: [32.8, 35.3, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 68"
+
+  - name: misc_box_69
+    position: [21.5, 25.7, 0.3]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 69"
+
+  - name: misc_box_70
+    position: [22.8, 24.6, 0.6]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 70"
+
+  - name: misc_box_71
+    position: [28.2, 30.9, 0.4]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 71"
+
+  - name: misc_box_72
+    position: [38.1, 31.7, 0.6]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 72"
+
+  - name: misc_box_73
+    position: [27.6, 20.1, 0.3]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 73"
+
+  - name: misc_box_74
+    position: [39.1, 28.4, 0.6]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 74"
+
+  - name: misc_box_75
+    position: [24.4, 24.4, 0.4]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 75"
+
+  - name: misc_box_76
+    position: [33.6, 28.1, 0.2]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 76"
+
+  - name: misc_box_77
+    position: [32.4, 20.5, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 77"
+
+  - name: misc_box_78
+    position: [32.9, 22.7, 0.4]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 78"
+
+  - name: misc_box_79
+    position: [24.2, 26.5, 0.6]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 79"
+
+  - name: misc_box_80
+    position: [36.6, 25.0, 0.2]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 80"
+
+  - name: misc_box_81
+    position: [40.0, 27.0, 0.6]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 81"
+
+  - name: misc_box_82
+    position: [35.1, 39.0, 0.2]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 82"
+
+  - name: misc_box_83
+    position: [22.5, 33.4, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 83"
+
+  - name: misc_box_84
+    position: [35.3, 23.4, 0.5]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 84"
+
+  - name: misc_box_85
+    position: [36.4, 39.3, 0.2]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 85"
+
+  - name: misc_box_86
+    position: [33.5, 39.2, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 86"
+
+  - name: misc_box_87
+    position: [33.8, 32.5, 0.2]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 87"
+
+  - name: misc_box_88
+    position: [32.0, 22.4, 0.8]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 88"
+
+  - name: misc_box_89
+    position: [28.6, 27.4, 0.5]
+    category: obstacle
+    size: [0.3, 0.3, 0.3]
+    description: "Generic warehouse cardboard box 89"
+
+  - name: misc_box_90
+    position: [36.4, 22.1, 0.8]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 90"
+
+  - name: misc_box_91
+    position: [34.1, 28.7, 0.6]
+    category: obstacle
+    size: [0.6, 0.6, 0.6]
+    description: "Generic warehouse cardboard box 91"
+
+  - name: misc_box_92
+    position: [36.2, 30.8, 0.4]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 92"
+
+  - name: misc_box_93
+    position: [25.4, 37.0, 0.7]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 93"
+
+  - name: misc_box_94
+    position: [24.9, 29.3, 0.5]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 94"
+
+  - name: misc_box_95
+    position: [37.0, 23.6, 0.2]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 95"
+
+  - name: misc_box_96
+    position: [37.6, 34.0, 0.3]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 96"
+
+  - name: misc_box_97
+    position: [21.7, 34.4, 0.4]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 97"
+
+  - name: misc_box_98
+    position: [32.9, 29.8, 0.7]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 98"
+
+  - name: misc_box_99
+    position: [33.8, 26.1, 0.5]
+    category: obstacle
+    size: [0.4, 0.4, 0.4]
+    description: "Generic warehouse cardboard box 99"
+
+  - name: misc_box_100
+    position: [28.5, 34.9, 0.3]
+    category: obstacle
+    size: [0.5, 0.5, 0.5]
+    description: "Generic warehouse cardboard box 100"
+
+  - name: misc_box_101
+    position: [25.0, 22.4, 0.2]
+    category: obstacle
+    size: [0.2, 0.2, 0.2]
+    description: "Generic warehouse cardboard box 101"
+
+# ============================================
+# Semantic Relationships for LLM Reasoning
+# ============================================
+# These relationships are exposed to the Intent Extractor LLM
+# to enable disambiguation (e.g., "pallet near shelf A" → pallet_1)
+
+relationships:
+  # Spatial proximity relationships
+  - from: pallet_1
+    to: shelf_a
+    relation: near
+    
+  - from: pallet_2
+    to: shelf_b
+    relation: near
+    
+  # Zone relationships
+  - from: landing_pad
+    to: warehouse_floor
+    relation: in_zone
+    
+  # Obstacle proximity (helps LLM understand environment layout)
+  - from: forklift
+    to: pallet_2
+    relation: near
+    
+  - from: box_1
+    to: pallet_1
+    relation: near
+  - from: misc_box_3
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_4
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_7
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_10
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_21
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_30
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_31
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_37
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_41
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_55
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_59
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_60
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_70
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_76
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_77
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_82
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_84
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_86
+    to: warehouse_wall
+    relation: near
+
+  - from: misc_box_94
+    to: warehouse_wall
+    relation: near
