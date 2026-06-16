@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocoa Speech - Intelligent Drone Control via Natural Language & LLMs</title>
+    <title>Natural Language-Guided Abstraction and Spatial Anchoring for UAV Voice User Interfaces</title>
     <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,9 +18,9 @@
             --card-border: rgba(255, 255, 255, 0.08);
             --text-primary: #f3f4f6;
             --text-secondary: #9ca3af;
-            --accent-primary: #8b5cf6; /* Violet */
-            --accent-secondary: #6366f1; /* Indigo */
-            --glow-color: rgba(139, 92, 246, 0.15);
+            --accent-primary: #2563eb; /* Royal Blue (Medium) */
+            --accent-secondary: #1d4ed8; /* Royal Blue (Deep) */
+            --glow-color: rgba(37, 99, 235, 0.15);
             --font-headings: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
         }
@@ -38,8 +38,8 @@
             line-height: 1.6;
             overflow-x: hidden;
             background-image: 
-                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+                radial-gradient(circle at 10% 20%, rgba(37, 99, 235, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(29, 78, 216, 0.05) 0%, transparent 40%);
             background-attachment: fixed;
         }
 
@@ -71,7 +71,7 @@
             font-family: var(--font-headings);
             font-weight: 700;
             font-size: 24px;
-            background: linear-gradient(135deg, #a78bfa, #818cf8);
+            background: linear-gradient(135deg, #60a5fa, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             display: flex;
@@ -112,7 +112,7 @@
 
         .btn-github:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3);
         }
 
         /* Hero Section */
@@ -123,9 +123,9 @@
         }
 
         .badge {
-            background-color: rgba(139, 92, 246, 0.1);
-            border: 1px solid rgba(139, 92, 246, 0.2);
-            color: #c084fc;
+            background-color: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.2);
+            color: #60a5fa;
             padding: 6px 16px;
             border-radius: 100px;
             font-size: 13px;
@@ -143,7 +143,7 @@
             line-height: 1.15;
             letter-spacing: -1px;
             margin-bottom: 20px;
-            background: linear-gradient(to right, #f3f4f6, #d1d5db, #a78bfa);
+            background: linear-gradient(to right, #f3f4f6, #d1d5db, #60a5fa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -197,7 +197,7 @@
         }
 
         .section-title i {
-            color: #a78bfa;
+            color: #60a5fa;
         }
 
         /* Abstract Styling */
@@ -214,7 +214,7 @@
             padding-left: 20px;
             margin: 30px 0 10px 0;
             font-style: italic;
-            color: #d8b4fe;
+            color: #93c5fd;
             font-size: 16px;
         }
 
@@ -274,12 +274,12 @@
 
         .feature-item:hover {
             transform: translateY(-4px);
-            border-color: rgba(139, 92, 246, 0.4);
+            border-color: rgba(37, 99, 235, 0.4);
         }
 
         .feature-icon {
             font-size: 24px;
-            color: #c084fc;
+            color: #60a5fa;
             margin-bottom: 16px;
         }
 
@@ -311,7 +311,7 @@
         }
 
         .text-gradient {
-            background: linear-gradient(to right, #c084fc, #818cf8);
+            background: linear-gradient(to right, #60a5fa, #2563eb);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
@@ -345,7 +345,7 @@
         <!-- Hero Section -->
         <section class="hero">
             <span class="badge">ROS2 + Edge LLM Project</span>
-            <h1>Intelligent Drone Control via Natural Language</h1>
+            <h1>Natural Language-Guided Abstraction and Spatial Anchoring for UAV Voice User Interfaces</h1>
             <p>Empowering the Crazyflie nano quadcopter with spatial awareness, context grounding, and speech-to-text path execution using on-device Language Models.</p>
         </section>
 
@@ -437,7 +437,7 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 <span class="text-gradient">Cocoa Speech Project</span>. Built for UAV research.</p>
-            <p>Empirical study code and test suites are public on <a href="https://github.com/TTZ-Unbemannte-Flugsysteme/LMinterface" style="color: #c084fc; text-decoration: none;" target="_blank">GitHub</a>.</p>
+            <p>Empirical study code and test suites are public on <a href="https://github.com/TTZ-Unbemannte-Flugsysteme/LMinterface" style="color: #60a5fa; text-decoration: none;" target="_blank">GitHub</a>.</p>
         </div>
     </footer>
 
