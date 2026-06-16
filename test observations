@@ -1,3 +1,0 @@
-while testing the sequence 9,the drone initially chose shelf a and then when asked to go to the  pallet it chose pallet 1 and when asked to go to the neareawt shelf from there .
-it correctly went to shelf a and then from there when asked to go to the nearest pallet from shelf b ,it correctly went o pallet 2
-
