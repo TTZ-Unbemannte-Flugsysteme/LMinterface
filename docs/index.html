@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cocoa Speech - Intelligent Drone Control via Natural Language & LLMs</title>
+    <!-- Google Fonts: Outfit (Headings) & Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-fontawesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: rgba(17, 24, 39, 0.7);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f3f4f6;
+            --text-secondary: #9ca3af;
+            --accent-primary: #8b5cf6; /* Violet */
+            --accent-secondary: #6366f1; /* Indigo */
+            --glow-color: rgba(139, 92, 246, 0.15);
+            --font-headings: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Container styling */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header / Navbar */
+        header {
+            padding: 24px 0;
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: rgba(11, 15, 25, 0.8);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-headings);
+            font-weight: 700;
+            font-size: 24px;
+            background: linear-gradient(135deg, #a78bfa, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .btn-github {
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            color: #fff !important;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 14px !important;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px var(--glow-color);
+            transition: transform 0.2s, box-shadow 0.2s !important;
+        }
+
+        .btn-github:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 80px 0 60px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .badge {
+            background-color: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: #c084fc;
+            padding: 6px 16px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            font-family: var(--font-headings);
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #f3f4f6, #d1d5db, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 32px auto;
+        }
+
+        /* Card / Glassmorphism layouts */
+        .glass-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+            pointer-events: none;
+        }
+
+        .section-title {
+            font-family: var(--font-headings);
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: var(--text-primary);
+        }
+
+        .section-title i {
+            color: #a78bfa;
+        }
+
+        /* Abstract Styling */
+        .abstract-text {
+            font-size: 16px;
+            color: var(--text-secondary);
+            text-align: justify;
+            text-justify: inter-word;
+            margin-bottom: 20px;
+        }
+
+        .abstract-highlight {
+            border-left: 3px solid var(--accent-primary);
+            padding-left: 20px;
+            margin: 30px 0 10px 0;
+            font-style: italic;
+            color: #d8b4fe;
+            font-size: 16px;
+        }
+
+        /* Video Section */
+        .video-wrapper {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            margin-top: 16px;
+            background-color: #000;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            border-radius: 16px;
+            aspect-ratio: 2104/1082;
+        }
+
+        .video-caption {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 12px;
+            font-style: italic;
+        }
+
+        /* Grid Section (Packages/Architecture) */
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-item {
+            background-color: rgba(17, 24, 39, 0.4);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 24px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            color: #c084fc;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-family: var(--font-headings);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--card-border);
+            font-size: 14px;
+            margin-top: 80px;
+        }
+
+        footer p {
+            margin-bottom: 8px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #c084fc, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fa-solid fa-paper-plane"></i> Cocoa Speech
+            </div>
+            <ul class="nav-links">
+                <li><a href="#abstract">Abstract</a></li>
+                <li><a href="#study">Empirical Study</a></li>
+                <li><a href="#architecture">Architecture</a></li>
+                <li>
+                    <a href="https://github.com/TTZ-Unbemannte-Flugsysteme/LMinterface" class="btn-github" target="_blank">
+                        <i class="fa-brands fa-github"></i> View Code
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="badge">ROS2 + Edge LLM Project</span>
+            <h1>Intelligent Drone Control via Natural Language</h1>
+            <p>Empowering the Crazyflie nano quadcopter with spatial awareness, context grounding, and speech-to-text path execution using on-device Language Models.</p>
+        </section>
+
+        <!-- Abstract Card -->
+        <section id="abstract" class="glass-card">
+            <h2 class="section-title"><i class="fa-solid fa-file-invoice"></i> Paper Abstract</h2>
+            
+            <p class="abstract-text">
+                <!-- User can replace this abstract text block when editing -->
+                This research presents a novel system architecture for controlling nano quadcopters (Crazyflie) using natural language speech inputs. By integrating Large Language Models (LLMs) running locally at the edge with the Robot Operating System (ROS2) and Software-in-the-Loop (SITL) simulations, the system parses natural voice commands into flight-critical task representations and routes them through A* collision-avoiding path planners. 
+            </p>
+            
+            <p class="abstract-text">
+                We introduce Language-Guided Abstraction (LGA) and an Epistemic Knowledge Graph (EKG) to bind spoken command concepts to physical coordinate spaces. This grounding layer enables the quadcopter to dynamically interpret relative navigational references, conversational history, and spatial obstructions in warehouse environments.
+            </p>
+
+            <div class="abstract-highlight">
+                "The empirical study demonstrates that small edge LLMs (7B parameters) require explicit semantic context structuring to perform reliable contextual reasoning. Without structured hints like CURRENT_LOCATION and PREVIOUS_LOCATION, the model defaults to pattern-matching from examples rather than true logical inference."
+            </div>
+        </section>
+
+        <!-- Video Card -->
+        <section id="study" class="glass-card">
+            <h2 class="section-title"><i class="fa-solid fa-circle-play"></i> Empirical Study Video Excerpt</h2>
+            <p class="abstract-text" style="margin-bottom: 24px;">
+                Watch the video demonstration showing the real-time voice interface and flight execution in a simulated warehouse setup. The system processes spoken user command recordings, transcribes them using local Whisper ASR, and converts them to coordinates.
+            </p>
+
+            <div class="video-wrapper">
+                <video controls preload="metadata">
+                    <source src="Natural_Language_Interface.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+            <div class="video-caption">
+                Figure 1: Quadcopter natural language control demonstration under Gazebo simulation.
+            </div>
+        </section>
+
+        <!-- System Architecture Features -->
+        <section id="architecture" style="margin-top: 40px;">
+            <h2 class="section-title" style="margin-bottom: 12px;"><i class="fa-solid fa-cubes"></i> Core ROS2 Packages</h2>
+            <p class="abstract-text">
+                The interface consists of modular ROS2 nodes that handle distinct layers of the translation, planning, and control lifecycle:
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-microphone"></i></div>
+                    <div class="feature-title">cocoa_dialogue</div>
+                    <div class="feature-desc">Hosts the web user interface. Captures microphone speech, transcribes it locally using Whisper ASR, and publishes commands.</div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                    <div class="feature-title">cocoa_intent</div>
+                    <div class="feature-desc">Performs intent extraction and semantic tagging using structured instruction prompts sent to the edge-running LLM.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-diagram-project"></i></div>
+                    <div class="feature-title">cocoa_ekg</div>
+                    <div class="feature-desc">Epistemic Knowledge Graph. Tracks environment objects, locations, states, and coordinates to ground the drone's world.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
+                    <div class="feature-title">cocoa_lga</div>
+                    <div class="feature-desc">Language-Guided Abstraction. Filters and feeds only relevant spatial/state context to the LLM to fit within context limits.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-route"></i></div>
+                    <div class="feature-title">cocoa_llm_planner</div>
+                    <div class="feature-desc">Processes high-level goal commands, dynamically structures target tasks, and manages drone action execution states.</div>
+                </div>
+
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-compass"></i></div>
+                    <div class="feature-title">cocoa_path_planner</div>
+                    <div class="feature-desc">Calculates collision-free waypoints around 3D structures like walls and shelves using an optimized A* search algorithm.</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 <span class="text-gradient">Cocoa Speech Project</span>. Built for UAV research.</p>
+            <p>Empirical study code and test suites are public on <a href="https://github.com/TTZ-Unbemannte-Flugsysteme/LMinterface" style="color: #c084fc; text-decoration: none;" target="_blank">GitHub</a>.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
